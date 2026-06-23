@@ -109,7 +109,7 @@ body {
 
 /* 2. Create the hidden overlay using an ::after pseudo-element */
 .card__img-container::after {
-  content: url("https://raw.githubusercontent.com/Kking927/nft-card-component/eef31634fee0c0dfe0019597052cc4444c7d628d/images/icon-view.svg");
+  content: url("images/icon-view.svg");
   position: absolute;
   inset: 0;
   background-color: var(--img-hover); /* Semi-transparent cyan */
