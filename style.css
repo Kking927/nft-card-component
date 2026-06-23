@@ -1,1 +1,234 @@
+:root {
+  /* Colors */
+  /* Primary */
+  --blue-500: hsl(215, 51%, 70%);
+  --cyan-400: hsl(178, 100%, 50%);
+  --img-hover: hsla(178, 100%, 50%, 0.5);
+  --text-hover: hsl(178, 100%, 50%);
 
+  /* Neutral */
+  --blue-950: hsl(217, 54%, 11%); /* main BG */
+  --blue-900: hsl(216, 50%, 16%); /* card BG */
+  --blue-800: hsl(215, 32%, 27%); /* line */
+  --white: hsl(0, 0%, 100%);
+
+  /* Typography */
+  --font-family: "Outfit", sans-serif;
+
+  /* Sizes */
+  --body: 1.125rem; /* 18px */
+  --title: 1.375rem; /* 22px */
+
+  /* Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-bold: 600;
+
+  /* Border Radii */
+  --card-radius: 1rem;
+  --image-radius: 0.5rem;
+
+  /* Spacing */
+  --card-gap: 2rem;
+  --divider-gap: -0.5rem;
+  --footer-gap: 1rem;
+
+  /*   Effects & Tansitions */
+  --overlay-fade: opacity 0.3s ease;
+  --transition-fast: 0.3s ease;
+  --transition-glow: border-color 0.3s ease, box-shadow 0.3s ease;
+  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  /* Shared Transforms/Glows */
+  --lift-up: translateY(-2px);
+  --neon-glow-icon: drop-shadow(0 0 5px var(--cyan-400));
+  --neon-glow-text: 0 0 8px rgba(0, 255, 247, 0.6);
+  --avatar-glow: 0 0 12px rgba(0, 255, 247, 0.6);
+  --text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
+}
+
+/* Basic Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--blue-950);
+  font-family: var(--font-family);
+  font-size: var(--body);
+  font-weight: var(--fw-normal);
+  color: var(--blue-500);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  background-color: var(--blue-900);
+  padding: 1.625rem;
+  border-radius: var(--card-radius);
+  width: 100%;
+  max-width: 25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.card__img {
+  width: 100%;
+  border-radius: var(--image-radius);
+  display: block;
+}
+
+/* 1. Make the container a positioning reference */
+.card__img-container {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--image-radius);
+  overflow: hidden;
+}
+
+/* 2. Create the hidden overlay using an ::after pseudo-element */
+.card__img-container::after {
+  content: url("https://raw.githubusercontent.com/Kking927/nft-card-component/eef31634fee0c0dfe0019597052cc4444c7d628d/images/icon-view.svg");
+  position: absolute;
+  inset: 0;
+  background-color: var(--img-hover); /* Semi-transparent cyan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: var(--overlay-fade);
+}
+
+/* 3. Reveal the overlay on hover */
+.card__img-container:hover::after {
+  opacity: 1;
+}
+
+.card__text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card__title {
+  color: var(--white);
+  font-weight: var(--fw-bold);
+  font-size: var(--title);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.card__title:hover {
+  color: var(--text-hover);
+}
+
+.card__stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card__stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.card__stat-icon {
+  height: 1rem;
+  flex-shrink: 0;
+  transition: var(--transition-stat);
+}
+
+.card__stat-value--price {
+  color: var(--cyan-400);
+  transition: var(--transition-stat);
+}
+
+.card__stat-item:has(.card__stat-value--price):hover .card__stat-icon {
+  filter: var(--neon-glow-icon);
+  transform: var(--lift-up);
+}
+
+.card__stat-item:has(.card__stat-value--price):hover .card__stat-value--price {
+  text-shadow: var(--text-shadow);
+  transform: var(--lift-up);
+}
+
+@keyframes clockPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card__stat-item--time:hover .card__stat-icon {
+  animation: clockPulse 1s infinite ease-in-out;
+}
+
+.card__divider {
+  border: none;
+  border-top: 1px solid var(--blue-800);
+  width: 100%;
+  margin-block: var(--divider-gap);
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--footer-gap);
+}
+
+.card__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--white);
+  object-fit: cover;
+  transition: var(--transition-glow);
+}
+
+.card__author span {
+  color: var(--white);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.card__author span:hover ~ .card__avatar,
+.card__footer:has(.card__author span:hover) .card__avatar {
+  border-color: var(--cyan-400);
+  box-shadow: var(--avatar-glow);
+}
+
+.card__author span:hover {
+  color: var(--text-hover);
+}
