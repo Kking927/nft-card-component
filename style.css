@@ -33,12 +33,13 @@
   --divider-gap: -0.5rem;
   --footer-gap: 1rem;
 
-  /*   Effects & Tansitions */
-  --overlay-fade: opacity 0.3s ease;
+ /* Effects & Transitions */
+  --hover-overlay: opacity 0.3s ease;
   --transition-fast: 0.3s ease;
   --transition-glow: border-color 0.3s ease, box-shadow 0.3s ease;
-  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease,
-    transform 0.3s ease;
+  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+  --transition-card: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                      box-shadow 0.5s ease, border-color 0.3s ease;
 
   /* Shared Transforms/Glows */
   --lift-up: translateY(-2px);
@@ -46,6 +47,11 @@
   --neon-glow-text: 0 0 8px rgba(0, 255, 247, 0.6);
   --avatar-glow: 0 0 12px rgba(0, 255, 247, 0.6);
   --text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
+  
+  /* Card Hover Animations & Shadows */
+  --card-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --card-lift: translateY(-10px);
+  --card-shadow-hover: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
 }
 
 /* Basic Reset */
@@ -90,7 +96,15 @@ body {
   border-radius: var(--card-radius);
   width: 100%;
   max-width: 25rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--card-shadow);
+  border: 1px solid transparent;
+  transition: var(--transition-card);
+}
+
+.card:hover {
+  transform: var(--card-lift);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--cyan-400);
 }
 
 .card__img {
@@ -109,7 +123,7 @@ body {
 
 /* 2. Create the hidden overlay using an ::after pseudo-element */
 .card__img-container::after {
-  content: url("images/icon-view.svg");
+  content: url("https://raw.githubusercontent.com/Kking927/nft-card-component/eef31634fee0c0dfe0019597052cc4444c7d628d/images/icon-view.svg");
   position: absolute;
   inset: 0;
   background-color: var(--img-hover); /* Semi-transparent cyan */
