@@ -34,7 +34,7 @@
   --container-max-width: 90rem;
 
   --card-padding: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
-  --card-gap: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
+  --card-gap: clamp(1rem, 0.7rem + 1.5vw, 1rem);
   --card-max-width: 20rem;
   --card-stat-gap: clamp(0.35rem, 0.25rem + 0.5vw, 0.5rem);
   --icon-height: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
