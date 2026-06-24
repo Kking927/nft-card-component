@@ -265,32 +265,36 @@ body {
   color: var(--text-hover);
 }
 
-/* Media Queries */
+/* Media Queries (Strict Linter & Flawless Accessibility System) */
 @media (prefers-reduced-motion: reduce) {
   .card {
-    transition: background-color 0.3s ease, border-color 0.3s ease,
-      box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
-
+  
   .card__img-container::after {
     transition: none;
   }
-
+  
   .card__title,
   .card__author span {
     transition: color 0s linear;
   }
 
+  .card__stat-icon,
+  .card__stat-value--price {
+    transition: filter 0s linear, text-shadow 0s linear;
+  }
+ 
   .card:hover {
     transform: none;
   }
 
-  .card__stat-item--price:hover .card__stat-icon,
-  .card__stat-item--price:hover .card__stat-value--price {
+  .card__stat-item:hover .card__stat-icon--price,
+  .card__stat-item:hover .card__stat-value--price {
     transform: none;
   }
 
-  .card__stat-item--time:hover .card__stat-icon {
+  .card__stat-item:hover .card__stat-icon--time {
     animation: none;
   }
 }
