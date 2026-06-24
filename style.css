@@ -1,286 +1,56 @@
-:root {
-  /* Colors */
-  /* Primary */
-  --blue-500: hsl(215, 51%, 70%);
-  --cyan-400: hsl(178, 100%, 50%);
-  --img-hover: hsla(178, 100%, 50%, 0.5);
-  --text-hover: hsl(178, 100%, 50%);
+<!DOCTYPE html>
+<html lang="en">
 
-  /* Neutral */
-  --blue-950: hsl(217, 54%, 11%); /* main BG */
-  --blue-900: hsl(216, 50%, 16%); /* card BG */
-  --blue-800: hsl(215, 32%, 27%); /* line */
-  --white: hsl(0, 0%, 100%);
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFT Preview Card</title>
 
-  /* Typography */
-  --font-family: "Outfit", sans-serif;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 
-  /* Sizes */
-  --body: 1.125rem; /* 18px */
-  --title: 1.375rem; /* 22px */
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
 
-  /* Weights */
-  --fw-light: 300;
-  --fw-normal: 400;
-  --fw-bold: 600;
+<body>
+  <main class="container">
 
-  /* Border Radii */
-  --card-radius: 1rem;
-  --image-radius: 0.5rem;
+    <article class="card">
 
-  /* Spacing & Sizing */
-  --container-padding: clamp(1.5rem, 1.3rem + 0.9vw, 2rem)
-    clamp(1rem, 0.8rem + 0.9vw, 1.5rem);
-  --container-max-width: 90rem;
+      <div class="card__img-container">
+        <img src="https://github.com/Kking927/nft-card-component/blob/main/images/image-equilibrium.jpg?raw=true" alt="Equilibrium digital artwork cube" class="card__img">
+      </div>
 
-  --card-padding: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
-  --card-gap: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
-  --card-max-width: 25rem;
-  --card-text-gap: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
-  --card-stat-gap: clamp(0.35rem, 0.25rem + 0.5vw, 0.5rem);
-  --icon-height: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
-  --avatar-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);
+      <div class="card__text-content">
+        <h1 class="card__title">Equilibrium #3429</h1>
+        <p class="card__description">Our Equilibrium collection promotes balance and calm.</p>
+      </div>
 
-  --divider-gap: clamp(-0.5rem, -0.15rem - 0.5vw, -0.25rem);
+      <div class="card__stats">
+        <div class="card__stat-item">
+          <img src="https://raw.githubusercontent.com/Kking927/nft-card-component/ed9d35bad440ceca4f3951633d67987caeaf7e4a/images/icon-ethereum.svg" alt="Ethereum icon" class="card__stat-icon card__stat-icon--price">
+          <span class="card__stat-value--price">0.041 ETH</span>
+        </div>
 
-  --footer-gap: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+        <div class="card__stat-item">
+          <img src="https://raw.githubusercontent.com/Kking927/nft-card-component/19c9696dbf4c3bc719763bd7d3a02e049d121301/images/icon-clock.svg" alt="Clock icon" class="card__stat-icon card__stat-icon--time">
+          <time datetime="P3D" class="card__stat-value">3 days left</time>
+        </div>
+      </div>
 
-  /* Effects & Transitions */
-  --hover-overlay: opacity 0.3s ease;
-  --transition-fast: 0.3s ease;
-  --transition-glow: border-color 0.3s ease, box-shadow 0.3s ease;
-  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease,
-    transform 0.3s ease;
-  --transition-card: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    box-shadow 0.5s ease, border-color 0.3s ease;
+      <hr class="card__divider">
 
-  /* Shared Transforms/Glows */
-  --lift-up: translateY(-2px);
-  --neon-glow-icon: drop-shadow(0 0 5px var(--cyan-400));
-  --neon-glow-text: 0 0 8px rgba(0, 255, 247, 0.6);
-  --avatar-glow: 0 0 12px rgba(0, 255, 247, 0.6);
-  --text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
+      <div class="card__footer">
+        <img src="https://github.com/Kking927/nft-card-component/blob/main/images/image-avatar.png?raw=true" alt="Portrait of Creation Share creator Jules Wyvern" class="card__avatar">
+        <div class="card__author">
+          Creation of <span class="card__author-name">Jules Wyvern</span>
+        </div>
+      </div>
 
-  /* Card Hover Animations & Shadows */
-  --card-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  --card-lift: translateY(-10px);
-  --card-shadow-hover: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
-}
+    </article> </main>
+</body>
 
-/* Basic Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--blue-950);
-  font-family: var(--font-family);
-  font-size: var(--body);
-  font-weight: var(--fw-normal);
-  color: var(--blue-500);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-.container {
-  width: 100%;
-  max-width: var(--container-max-width);
-  padding: var(--container-padding);
-  display: flex;
-  justify-content: center;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--card-gap);
-  background-color: var(--blue-900);
-  padding: var(--card-padding);
-  border-radius: var(--card-radius);
-  width: 100%;
-  max-width: var(--card-max-width);
-  box-shadow: var(--card-box-shadow);
-  border: 1px solid transparent;
-  transition: var(--transition-card);
-}
-
-.card:hover {
-  transform: var(--card-lift);
-  box-shadow: var(--card-shadow-hover);
-  border-color: var(--cyan-400);
-}
-
-/* Card Image */
-.card__img {
-  width: 100%;
-  border-radius: var(--image-radius);
-  display: block;
-}
-
-/* 1. Make the container a positioning reference */
-.card__img-container {
-  position: relative;
-  cursor: pointer;
-  border-radius: var(--image-radius);
-  overflow: hidden;
-}
-
-/* 2. Create the hidden overlay using an ::after pseudo-element */
-.card__img-container::after {
-  content: url("https://raw.githubusercontent.com/Kking927/nft-card-component/eef31634fee0c0dfe0019597052cc4444c7d628d/images/icon-view.svg");
-  position: absolute;
-  inset: 0;
-  background-color: var(--img-hover); /* Semi-transparent cyan */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: var(--hover-overlay);
-}
-
-/* 3. Reveal the overlay on hover */
-.card__img-container:hover::after {
-  opacity: 1;
-}
-
-/* Card Text */
-.card__text-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--card-text-gap);
-}
-
-.card__title {
-  color: var(--white);
-  font-weight: var(--fw-bold);
-  font-size: var(--title);
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.card__title:hover {
-  color: var(--text-hover);
-}
-
-/* Card Stats */
-.card__stats {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.card__stat-item {
-  display: flex;
-  align-items: center;
-  gap: var(--card-stat-gap);
-  cursor: pointer;
-}
-
-.card__stat-icon {
-  height: var(--icon-height);
-  flex-shrink: 0;
-  transition: var(--transition-stat);
-}
-
-.card__stat-value--price {
-  color: var(--cyan-400);
-  transition: var(--transition-stat);
-}
-
-.card__stat-item:hover .card__stat-icon--time {
-  animation: clockPulse 1s infinite ease-in-out;
-}
-
-.card__stat-item:hover .card__stat-icon--price {
-  filter: var(--neon-glow-icon);
-  transform: var(--lift-up);
-}
-
-.card__stat-item:hover .card__stat-value--price {
-  text-shadow: var(--text-shadow);
-  transform: var(--lift-up);
-}
-
-/* Animations */
-@keyframes clockPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.35);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Divider Line */
-.card__divider {
-  border: none;
-  border-top: 1px solid var(--blue-800);
-  width: 100%;
-  margin-block: var(--divider-gap);
-}
-
-/* Footer */
-.card__footer {
-  display: flex;
-  align-items: center;
-  gap: var(--footer-gap);
-}
-
-.card__avatar {
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1px solid var(--white);
-  object-fit: cover;
-  transition: var(--transition-glow);
-}
-
-.card__author span {
-  color: var(--white);
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.card__footer:hover .card__avatar {
-  border-color: var(--cyan-400);
-  box-shadow: var(--avatar-glow);
-}
-
-.card__footer:hover .card__author span {
-  color: var(--text-hover);
-}
-
-/* Media Queries */
-@media (prefers-reduced-motion: reduce) {
-  .card:hover {
-    transform: none;
-    transition: background-color 0.3s ease, border-color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  /* Stop the price stats and icons from moving upward */
-  .card__stat-item--price:hover .card__stat-icon,
-  .card__stat-item--price:hover .card__stat-value--price {
-    transform: none;
-  }
-
-  /* Stop the clock icon pulse animation */
-  .card__stat-item--time:hover .card__stat-icon {
-    animation: none;
-  }
-}
+</html>
