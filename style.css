@@ -198,16 +198,21 @@ body {
   transition: var(--transition-stat);
 }
 
-.card__stat-item:has(.card__stat-value--price):hover .card__stat-icon {
+.card__stat-item:hover .card__stat-icon--time {
+  animation: clockPulse 1s infinite ease-in-out;
+}
+
+.card__stat-item:hover .card__stat-icon--price {
   filter: var(--neon-glow-icon);
   transform: var(--lift-up);
 }
 
-.card__stat-item:has(.card__stat-value--price):hover .card__stat-value--price {
+.card__stat-item:hover .card__stat-value--price {
   text-shadow: var(--text-shadow);
   transform: var(--lift-up);
 }
 
+/* Animations */
 @keyframes clockPulse {
   0% {
     transform: scale(1);
@@ -218,10 +223,6 @@ body {
   100% {
     transform: scale(1);
   }
-}
-
-.card__stat-item--time:hover .card__stat-icon {
-  animation: clockPulse 1s infinite ease-in-out;
 }
 
 /* Divider Line */
@@ -262,4 +263,24 @@ body {
 
 .card__footer:hover .card__author span {
   color: var(--text-hover);
+}
+
+/* Media Queries */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Stop the price stats and icons from moving upward */
+  .card__stat-item--price:hover .card__stat-icon,
+  .card__stat-item--price:hover .card__stat-value--price {
+    transform: none;
+  }
+
+  /* Stop the clock icon pulse animation */
+  .card__stat-item--time:hover .card__stat-icon {
+    animation: none;
+  }
 }
