@@ -28,18 +28,31 @@
   --card-radius: 1rem;
   --image-radius: 0.5rem;
 
-  /* Spacing */
-  --card-gap: 2rem;
-  --divider-gap: -0.5rem;
-  --footer-gap: 1rem;
+  /* Spacing & Sizing */
+  --container-padding: clamp(1.5rem, 1.3rem + 0.9vw, 2rem)
+    clamp(1rem, 0.8rem + 0.9vw, 1.5rem);
+  --container-max-width: 90rem;
 
- /* Effects & Transitions */
+  --card-padding: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
+  --card-gap: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
+  --card-max-width: 25rem;
+  --card-text-gap: clamp(1rem, 0.7rem + 1.5vw, 1.5rem);
+  --card-stat-gap: clamp(0.35rem, 0.25rem + 0.5vw, 0.5rem);
+  --icon-height: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+  --avatar-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);
+
+  --divider-gap: clamp(-0.5rem, -0.15rem - 0.5vw, -0.25rem);
+
+  --footer-gap: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+
+  /* Effects & Transitions */
   --hover-overlay: opacity 0.3s ease;
   --transition-fast: 0.3s ease;
   --transition-glow: border-color 0.3s ease, box-shadow 0.3s ease;
-  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-  --transition-card: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                      box-shadow 0.5s ease, border-color 0.3s ease;
+  --transition-stat: filter 0.3s ease, text-shadow 0.3s ease,
+    transform 0.3s ease;
+  --transition-card: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.5s ease, border-color 0.3s ease;
 
   /* Shared Transforms/Glows */
   --lift-up: translateY(-2px);
@@ -47,7 +60,7 @@
   --neon-glow-text: 0 0 8px rgba(0, 255, 247, 0.6);
   --avatar-glow: 0 0 12px rgba(0, 255, 247, 0.6);
   --text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
-  
+
   /* Card Hover Animations & Shadows */
   --card-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   --card-lift: translateY(-10px);
@@ -81,8 +94,8 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1440px;
-  padding: 2rem 1.5rem;
+  max-width: var(--container-max-width);
+  padding: var(--container-padding);
   display: flex;
   justify-content: center;
 }
@@ -92,11 +105,11 @@ body {
   flex-direction: column;
   gap: var(--card-gap);
   background-color: var(--blue-900);
-  padding: 1.625rem;
+  padding: var(--card-padding);
   border-radius: var(--card-radius);
   width: 100%;
-  max-width: 25rem;
-  box-shadow: var(--card-shadow);
+  max-width: var(--card-max-width);
+  box-shadow: var(--card-box-shadow);
   border: 1px solid transparent;
   transition: var(--transition-card);
 }
@@ -107,6 +120,7 @@ body {
   border-color: var(--cyan-400);
 }
 
+/* Card Image */
 .card__img {
   width: 100%;
   border-radius: var(--image-radius);
@@ -131,7 +145,7 @@ body {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: var(--overlay-fade);
+  transition: var(--hover-overlay);
 }
 
 /* 3. Reveal the overlay on hover */
@@ -139,10 +153,11 @@ body {
   opacity: 1;
 }
 
+/* Card Text */
 .card__text-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--card-text-gap);
 }
 
 .card__title {
@@ -157,6 +172,7 @@ body {
   color: var(--text-hover);
 }
 
+/* Card Stats */
 .card__stats {
   display: flex;
   align-items: center;
@@ -167,12 +183,12 @@ body {
 .card__stat-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--card-stat-gap);
   cursor: pointer;
 }
 
 .card__stat-icon {
-  height: 1rem;
+  height: var(--icon-height);
   flex-shrink: 0;
   transition: var(--transition-stat);
 }
@@ -208,6 +224,7 @@ body {
   animation: clockPulse 1s infinite ease-in-out;
 }
 
+/* Divider Line */
 .card__divider {
   border: none;
   border-top: 1px solid var(--blue-800);
@@ -215,6 +232,7 @@ body {
   margin-block: var(--divider-gap);
 }
 
+/* Footer */
 .card__footer {
   display: flex;
   align-items: center;
@@ -222,8 +240,8 @@ body {
 }
 
 .card__avatar {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
   flex-shrink: 0;
   border-radius: 50%;
   border: 1px solid var(--white);
@@ -237,12 +255,11 @@ body {
   transition: color var(--transition-fast);
 }
 
-.card__author span:hover ~ .card__avatar,
-.card__footer:has(.card__author span:hover) .card__avatar {
+.card__footer:hover .card__avatar {
   border-color: var(--cyan-400);
   box-shadow: var(--avatar-glow);
 }
 
-.card__author span:hover {
+.card__footer:hover .card__author span {
   color: var(--text-hover);
 }
