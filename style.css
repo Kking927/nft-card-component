@@ -37,6 +37,7 @@
   --card-gap: clamp(1rem, 0.7rem + 1.5vw, 1rem);
   --card-max-width: 20rem;
   --card-stat-gap: clamp(0.35rem, 0.25rem + 0.5vw, 0.5rem);
+  --text-gap: 1rem;
   --icon-height: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
   --avatar-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);
   --divider-block: clamp(-0.5rem, -0.15rem - 0.5vw, -0.25rem);
@@ -150,6 +151,12 @@ body {
   opacity: 1;
 }
 
+.card__text-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--text-gap);
+}
+
 .card__title {
   color: var(--white);
   font-weight: var(--fw-bold);
@@ -260,6 +267,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card__img-container::after {
+    transition: none;
   }
   
   .card:hover {
