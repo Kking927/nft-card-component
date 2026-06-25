@@ -162,6 +162,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  margin-block-start: var(--gap);
 }
 
 .card__title {
